@@ -9,9 +9,22 @@
   <title>ChocolateChip-UI iOS</title>
   <link rel="stylesheet" href="chui/chui-ios-3.8.0.css">
   <!-- UNCOMMENT WHEN DEPLOY PHONEGAP
-  <script src="cordova.js"></script>--> 
+  <script src="cordova.js"></script> -->
+  <script src="libs/jquery.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="chui/chui-3.8.0.js"></script>
+  <script src="libs/URI.js"></script>
+  <script src="libs/jorder.js"></script>
+  <script src="libs/async.js"></script>
+  <script src="app.js"></script>
+
+  <!-- TEST SCRIPT
+  <script>
+    $(document).ready(function(){
+    $("p").append("<b>Appended text</b>");
+  });
+  </script> -->
+
   <style>
     h2 {
       text-align: center;
@@ -46,6 +59,16 @@
       display: inline-block !important;
       height: 30px;
     }
+        .col {
+      padding: 20px 10px;
+      background-color: #fff;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+    .col img, p {
+      margin: 0;
+    }
   </style>
 </head>
 
@@ -58,28 +81,21 @@
   <article id="main" class="current">
      <section>
       <h2>Hello, Victor! Choose something to do!</h2>
-      <ul class='list'>
-<!--           <li class="icon list item">
-          </li> -->
-        <div class="image-container">
+        <p></p>
+        <ul class='list'>
+          <div class="image-container"></div>
+          <div class="back-button-container"></div>
+        </ul> 
 
-
-                      
-      </div>
-        <div class="back-button-container">
-<!--         <div class = "horizontal centered">
-        </div> -->
+<!--         <div class="grid">
+          <div class="col flex-5"><img src="images/music/Willy Moon.jpg" height='100px'><p>Test</p></div>
+          <div class="col flex-5"><img src="images/music/Willy Moon.jpg" height='100px'><p>Test</p> </div>
         </div>
-
-
-
-      </ul>
+                <div class="grid">
+          <div class="col flex-5"><img src="images/music/Willy Moon.jpg" height='100px'><p>Test</p></div>
+          <div class="col flex-5"><img src="images/music/Willy Moon.jpg" height='100px'><p>Test</p></div>
+        </div> -->
     </section>
   </article>
-  <script src="libs/jquery.js"></script>
-  <script src="libs/URI.js"></script>
-  <script src="libs/jorder.js"></script>
-  <script src="libs/async.js"></script>
-  <script src="app.js"></script>
 
 </body>

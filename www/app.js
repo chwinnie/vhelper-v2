@@ -32,9 +32,11 @@ var devURL = 'http://localhost/chui-app/www/index.html';
 
 function clearPage(callback) {
 	console.log('clearPage');
-	$('div.image-container').empty();
-	$('div.back-button-container').empty();
-	callback(null, null);
+	$(document).ready(function(){
+		$('div.image-container').empty();
+		$('div.back-button-container').empty();
+		callback(null, null);
+	});
 }
 
 function getPosts(cat, callback) {
@@ -45,55 +47,58 @@ function getPosts(cat, callback) {
 	var method = '?json=get_tag_posts';
 	var GET_params = '&slug='+cat+'&count='+ICON_COUNT;
 
-	$.ajax({
-		type: 'GET',
-		url: rootURL + method + GET_params,
-		dataType: 'json',
-		success: function(data){
-			console.log(data.posts);
-			// callback(null, data.posts);
+	$(document).ready(function(){
+		$.ajax({
+			type: 'GET',
+			url: rootURL + method + GET_params,
+			dataType: 'json',
+			success: function(data){
+				console.log(data.posts);
+				// callback(null, data.posts);
 
-			$.each(data.posts, function(index, value) {
-				img_url = value.thumbnail_images.thumbnail.url;
-				img_link = devURL + "?cat="; //for next cat
+				$.each(data.posts, function(index, value) {
+					img_url = value.thumbnail_images.thumbnail.url;
+					img_link = devURL + "?cat="; //for next cat
 
-				console.log("value");
-				console.log(value); //debug
-				// console.log(value.thumbnail);
+					console.log("value");
+					console.log(value); //debug
+					// console.log(value.thumbnail);
 
-				if (value.content != '') {
-					img_link += cat; 
-					img_link += "&content-id=" + value.id;
-				} else {
-					img_link += value.title.toLowerCase();
-				}
+					if (value.content != '') {
+						img_link += cat; 
+						img_link += "&content-id=" + value.id;
+					} else {
+						img_link += value.title.toLowerCase();
+					}
+					console.log("img_link "+ img_link);
 
-				var HTML = '<hor_li class = "image-item">' +
-				 '<img src="'+img_url+'">' + 
-				 '<a class="view-link" href="'+img_link+'">' +
-				'<p>'+value.title+'</p></hor_li>';
+					var HTML = '<hor_li class = "image-item">' +
+					 '<img src="'+img_url+'">' + 
+					 '<a class="view-link" href="'+img_link+'">' +
+					'<p>'+value.title+'</p></hor_li>';
 
-				// var linkHTML = '<a class="view-link" href="'+img_link+'">';
+					// var linkHTML = '<a class="view-link" href="'+img_link+'">';
 
-				// if (value.content == '') {
-				// 	img_link = "#" + value.title.toLowerCase();
-				// 	var linkHTML = '<a class="view-link" href="'+img_link+'">';
-				// 	HTML += linkHTML;
+					// if (value.content == '') {
+					// 	img_link = "#" + value.title.toLowerCase();
+					// 	var linkHTML = '<a class="view-link" href="'+img_link+'">';
+					// 	HTML += linkHTML;
 
-				// } else {
+					// } else {
 
-				// }
-			 	$('div.image-container').append(HTML);
+					// }
+				 	$('div.image-container').append(HTML);
 
 
 
-			}); 
+				}); 
 
-			callback(null, data.posts);
-		},
-		error: function(error){
-			callback(error, null);
-		}
+				callback(null, data.posts);
+			},
+			error: function(error){
+				callback(error, null);
+			}
+		});
 	});
 };
 
@@ -200,6 +205,9 @@ function displayBackButton(parent_cat) {
 };
 
 function route() {
+		$(document).ready(function(){
+		$('p').append('Route');
+	});
 	var params = URI(window.location.search).search(true);
 	var cat = params["cat"];
 	var content_id = params["content-id"];
